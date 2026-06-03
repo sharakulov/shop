@@ -719,3 +719,8 @@ class UserUpdateView(UpdateView):
     def get_object(self):
         return self.request.user
 
+# Выход
+from django.contrib.auth import logout
+def logoutUser(request):
+    logout(request)
+    return render(request, "index.html")
