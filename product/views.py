@@ -720,7 +720,12 @@ class UserUpdateView(UpdateView):
         return self.request.user
 
 # Выход
+# Разрешаем функции принимать и GET, и POST запросы
 from django.contrib.auth import logout
+from django.shortcuts import render, redirect
+from django.views.decorators.http import require_http_methods
+
+@require_http_methods(["GET", "POST"])    
 def logoutUser(request):
     logout(request)
     return render(request, "index.html")
